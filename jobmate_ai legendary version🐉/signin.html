@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In | JobMate AI</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">JobMate AI</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="job-matcher.html">Jobs</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="interview.html">Interview</a></li>
+      <li><a href="how-to-find-job.html">How to Find a Job</a></li>
+      <li><a href="cv-builder.html">Resume Builder</a></li>
+      <li id="authLinks">
+        <a href="signin.html">Sign In</a> |
+        <a href="signup.html">Sign Up</a>
+      </li>
+      <li id="userSection" style="display:none;">
+        <span id="userName"></span>
+        <a href="#" id="logoutBtn">Log Out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <section class="feature-section">
+      <h1><span class="feature-icon">🔑</span> Sign In</h1>
+      <form id="signinForm" autocomplete="on">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" required autocomplete="email"/>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required/>
+        <button type="submit" class="cta-btn">Sign In</button>
+      </form>
+      <p style="text-align:center; margin-top:1rem;">
+        Don't have an account? <a href="signup.html">Sign Up</a>
+      </p>
+      <div id="signinResult" class="results"></div>
+    </section>
+  </div>
+</body>
+</html>
