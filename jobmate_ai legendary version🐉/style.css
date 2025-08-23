@@ -194,6 +194,11 @@ textarea:focus {
 
 .cta-btn:hover { background: darkblue; color: white; }
 
+/* Add specific rule for CV result text color */
+#cvResult {
+  color: white !important;
+}
+
 .results {
   margin-top: 1.2rem;
   padding: 1rem;
@@ -202,7 +207,7 @@ textarea:focus {
   border-radius: 7px;
   min-height: 40px;
   font-size: 1.05rem;
-  color: var(--text-color);
+  color: white;
   word-break: break-word;
 }
 
@@ -233,10 +238,10 @@ textarea:focus {
 }
 
 .chat-window {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1rem;
-  background: #fff;
+  background: var(--card-bg);
 }
 
 .chat-messages {
@@ -244,8 +249,9 @@ textarea:focus {
   overflow-y: auto;
   margin-bottom: 1rem;
   padding: 1rem;
-  background: #f9f9f9;
+  background: var(--bg-color);
   border-radius: 5px;
+  border: 1px solid var(--border-color);
 }
 
 .message {
@@ -262,8 +268,8 @@ textarea:focus {
 }
 
 .message.bot {
-  background: #e7f1ff;
-  color: #0a3d62;
+  background: var(--dropdown-bg);
+  color: var(--text-color);
   margin-right: auto;
 }
 
@@ -366,4 +372,42 @@ textarea:focus {
 h1, h2, h3, h4, h5, h6,
 p, span, div, li {
   color: var(--text-color);
+}
+
+/* Remove visited effect for all links */
+a:visited {
+  color: inherit;
+}
+
+/* Ensure white links in dark mode */
+[data-theme="dark"] a {
+  color: var(--text-color-white) !important;
+}
+
+/* Make sure links in course results are white in dark mode */
+[data-theme="dark"] .results a {
+  color: var(--text-color-white) !important;
+}
+
+/* Remove underline from links in course results */
+.results a {
+  text-decoration: none;
+}
+
+.auth-grid a {
+    color: blue !important;
+}
+
+.auth-grid a:hover {
+    color: white !important;
+}
+
+/* Add hover effect for better user experience */
+.results a:hover {
+  text-decoration: underline;
+}
+
+.dropbtn img {
+    width: 40px;
+    height: 20px;
 }
