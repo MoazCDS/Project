@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Job Matcher | JobMate AI</title>
+  <title data-i18n="jobsTitle">Job Matcher | JobMate AI</title>
   <link rel="stylesheet" href="style.css"/>
   <link rel="icon" type="image/png" sizes="32x50" href="../imgs/Logo.png">
   <script defer src="script.js"></script>
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-logo">JobMate AI</div>
+    <div class="nav-logo" data-i18n="appName">JobMate AI</div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="job-matcher.html">Jobs</a></li>
-      <li><a href="courses.html">Courses</a></li>
-      <li><a href="interview.html">Interview</a></li>
-      <li><a href="how-to-find-job.html">How to Find a Job</a></li>
-      <li><a href="cv-builder.html">Resume Builder</a></li>
+      <li><a href="index.html" data-i18n="home">Home</a></li>
+      <li><a href="job-matcher.html" data-i18n="jobs">Jobs</a></li>
+      <li><a href="courses.html" data-i18n="courses">Courses</a></li>
+      <li><a href="interview.html" data-i18n="interview">Interview</a></li>
+      <li><a href="how-to-find-job.html" data-i18n="findJob">How to Find a Job</a></li>
+      <li><a href="cv-builder.html" data-i18n="resume">Resume Builder</a></li>
       <li id="authLinks">
-        <a href="signin.html">Sign In</a> |
-        <a href="signup.html">Sign Up</a>
+        <a href="signin.html" data-i18n="signIn">Sign In</a> |
+        <a href="signup.html" data-i18n="signUp">Sign Up</a>
       </li>
       <li id="userSection" style="display:none;">
         <div class="dropdown">
@@ -30,10 +30,16 @@
             <div class="theme-toggle">
               <label>
                 <input type="checkbox" id="themeSwitch">
-                🌙 Dark Mode
+                <span data-i18n="darkMode"> Dark Mode</span>
               </label>
             </div>
-            <a href="#" id="logoutBtn">Log Out</a>
+            <div class="language-selector">
+              <select id="languageSelect" onchange="setLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+              </select>
+            </div>
+            <a href="#" id="logoutBtn" data-i18n="signOut">Log Out</a>
           </div>
         </div>
       </li>
@@ -42,11 +48,11 @@
 
   <div class="container" style="max-width:760px;">
     <section class="feature-section">
-      <h1><span class="feature-icon">🧩</span> Job Matcher</h1>
+      <h1><span class="feature-icon">🧩</span> <span style="color:white" data-i18n="jobMatcher">Job Matcher</span></h1>
       <form id="jobForm">
-        <label for="jobSkills">Your skills or keywords:</label>
+        <label for="jobSkills" data-i18n="yourSkills">Your skills or keywords:</label>
         <textarea id="jobSkills" rows="3" placeholder="e.g. JavaScript, React, Node.js, Excel" required></textarea>
-        <button type="submit" class="cta-btn">Find Jobs</button>
+        <button type="submit" class="cta-btn" data-i18n="findJobs">Find Jobs</button>
       </form>
       <div id="jobResults" class="results" aria-live="polite"></div>
     </section>

@@ -1,26 +1,85 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8"/>-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<!--  <title>Courses | JobMate AI</title>-->
+<!--  <link rel="icon" type="image/png" sizes="32x50" href="../imgs/Logo.png">-->
+<!--  <link rel="stylesheet" href="style.css"/>-->
+<!--  <script defer src="script.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--  <nav class="navbar">-->
+<!--    <div class="nav-logo">JobMate AI</div>-->
+<!--    <ul class="nav-links">-->
+<!--      <li><a href="index.html">Home</a></li>-->
+<!--      <li><a href="job-matcher.html">Jobs</a></li>-->
+<!--      <li><a href="courses.html">Courses</a></li>-->
+<!--      <li><a href="interview.html">Interview</a></li>-->
+<!--      <li><a href="how-to-find-job.html">How to Find a Job</a></li>-->
+<!--      <li><a href="cv-builder.html">Resume Builder</a></li>-->
+<!--      <li id="authLinks">-->
+<!--        <a href="signin.html">Sign In</a> |-->
+<!--        <a href="signup.html">Sign Up</a>-->
+<!--      </li>-->
+<!--      <li id="userSection" style="display:none;">-->
+<!--        <div class="dropdown">-->
+<!--          <span id="userName"></span>-->
+<!--          <button class="dropbtn"><img src="../imgs/Logo.png" alt="..."/></button>-->
+<!--          <div class="dropdown-content">-->
+<!--            <div class="theme-toggle">-->
+<!--              <label>-->
+<!--                <input type="checkbox" id="themeSwitch">-->
+<!--                🌙 Dark Mode-->
+<!--              </label>-->
+<!--            </div>-->
+<!--            <a href="#" id="logoutBtn">Log Out</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+
+<!--  <div class="container" style="max-width:760px;">-->
+<!--    <section class="feature-section">-->
+<!--      <h1><span class="feature-icon">📚</span> Course Finder</h1>-->
+<!--      <form id="courseForm">-->
+<!--        <label for="courseTopic">What do you want to learn?</label>-->
+<!--        <input type="text" id="courseTopic" placeholder="e.g. Data Analysis, UI/UX, Python" required/>-->
+<!--        <button type="submit" class="cta-btn">Suggest Courses</button>-->
+<!--      </form>-->
+<!--      <div id="courseResults" class="results" aria-live="polite"></div>-->
+<!--    </section>-->
+<!--  </div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Courses | JobMate AI</title>
+  <title data-i18n="coursesTitle">Courses | JobMate AI</title>
   <link rel="icon" type="image/png" sizes="32x50" href="../imgs/Logo.png">
   <link rel="stylesheet" href="style.css"/>
   <script defer src="script.js"></script>
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-logo">JobMate AI</div>
+    <div class="nav-logo" data-i18n="appName">JobMate AI</div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="job-matcher.html">Jobs</a></li>
-      <li><a href="courses.html">Courses</a></li>
-      <li><a href="interview.html">Interview</a></li>
-      <li><a href="how-to-find-job.html">How to Find a Job</a></li>
-      <li><a href="cv-builder.html">Resume Builder</a></li>
+      <li><a href="index.html" data-i18n="home">Home</a></li>
+      <li><a href="job-matcher.html" data-i18n="jobs">Jobs</a></li>
+      <li><a href="courses.html" data-i18n="courses">Courses</a></li>
+      <li><a href="interview.html" data-i18n="interview">Interview</a></li>
+      <li><a href="how-to-find-job.html" data-i18n="findJob">How to Find a Job</a></li>
+      <li><a href="cv-builder.html" data-i18n="resume">Resume Builder</a></li>
       <li id="authLinks">
-        <a href="signin.html">Sign In</a> |
-        <a href="signup.html">Sign Up</a>
+        <a href="signin.html" data-i18n="signIn">Sign In</a> |
+        <a href="signup.html" data-i18n="signUp">Sign Up</a>
       </li>
       <li id="userSection" style="display:none;">
         <div class="dropdown">
@@ -30,10 +89,14 @@
             <div class="theme-toggle">
               <label>
                 <input type="checkbox" id="themeSwitch">
-                🌙 Dark Mode
+                <span data-i18n="darkMode">🌙 Dark Mode</span>
               </label>
             </div>
-            <a href="#" id="logoutBtn">Log Out</a>
+            <div class="language-switcher">
+              <button class="language-btn" data-lang="en">English</button>
+              <button class="language-btn" data-lang="ar">العربية</button>
+            </div>
+            <a href="#" id="logoutBtn" data-i18n="logOut">Log Out</a>
           </div>
         </div>
       </li>
@@ -42,11 +105,16 @@
 
   <div class="container" style="max-width:760px;">
     <section class="feature-section">
-      <h1><span class="feature-icon">📚</span> Course Finder</h1>
+      <h1><span class="feature-icon">📚</span> <span style="color:white" data-i18n="courseFinder">Course Finder</span></h1>
       <form id="courseForm">
-        <label for="courseTopic">What do you want to learn?</label>
-        <input type="text" id="courseTopic" placeholder="e.g. Data Analysis, UI/UX, Python" required/>
-        <button type="submit" class="cta-btn">Suggest Courses</button>
+        <label for="courseTopic" data-i18n="whatToLearn">What do you want to learn?</label>
+        <input
+          type="text"
+          id="courseTopic"
+          data-i18n-placeholder="coursePlaceholder"
+          placeholder="e.g. Data Analysis, UI/UX, Python"
+          required/>
+        <button type="submit" class="cta-btn" data-i18n="suggestCourses">Suggest Courses</button>
       </form>
       <div id="courseResults" class="results" aria-live="polite"></div>
     </section>

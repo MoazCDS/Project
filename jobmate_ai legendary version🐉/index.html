@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home | JobMate AI</title>
+  <title data-i18n="appName">JobMate AI</title>
   <link rel="stylesheet" href="style.css"/>
   <link rel="icon" type="image/png" sizes="32x50" href="../imgs/Logo.png">
   <script defer src="script.js"></script>
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-logo">JobMate AI</div>
+    <div class="nav-logo" data-i18n="appName">JobMate AI</div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="job-matcher.html">Jobs</a></li>
-      <li><a href="courses.html">Courses</a></li>
-      <li><a href="interview.html">Interview</a></li>
-      <li><a href="how-to-find-job.html">How to Find a Job</a></li>
-      <li><a href="cv-builder.html">Resume Builder</a></li>
+      <li><a href="index.html" data-i18n="home">Home</a></li>
+      <li><a href="job-matcher.html" data-i18n="jobs">Jobs</a></li>
+      <li><a href="courses.html" data-i18n="courses">Courses</a></li>
+      <li><a href="interview.html" data-i18n="interview">Interview</a></li>
+      <li><a href="how-to-find-job.html" data-i18n="findJob">How to Find a Job</a></li>
+      <li><a href="cv-builder.html" data-i18n="resume">Resume Builder</a></li>
       <li id="authLinks">
-        <a href="signin.html">Sign In</a> |
-        <a href="signup.html">Sign Up</a>
+        <a href="signin.html" data-i18n="signIn">Sign In</a> |
+        <a href="signup.html" data-i18n="signUp">Sign Up</a>
       </li>
       <li id="userSection" style="display:none;">
         <div class="dropdown">
@@ -30,10 +30,14 @@
             <div class="theme-toggle">
               <label>
                 <input type="checkbox" id="themeSwitch">
-                🌙 Dark Mode
+                <span data-i18n="darkMode">🌙 Dark Mode</span>
               </label>
             </div>
-            <a href="#" id="logoutBtn">Log Out</a>
+            <div class="language-switcher">
+              <button class="language-btn" data-lang="en">English</button>
+              <button class="language-btn" data-lang="ar">العربية</button>
+            </div>
+            <a href="#" id="logoutBtn" data-i18n="logOut">Log Out</a>
           </div>
         </div>
       </li>
@@ -42,28 +46,28 @@
 
   <div class="container" style="max-width:760px;">
     <section class="feature-section">
-      <h1><span class="feature-icon">🧭</span> Welcome to JobMate AI</h1>
-      <p>Find jobs, sharpen skills, practice interviews, and build a neat resume — all in one place.</p>
+      <h1><span class="feature-icon">🧭</span> <span style="color:white" data-i18n="welcome">Welcome to JobMate AI</span></h1>
+      <p data-i18n="welcomeSubtitle">Find jobs, sharpen skills, practice interviews, and build a neat resume — all in one place.</p>
       <div class="auth-grid">
         <div>
-          <h3>Find the right job</h3>
-          <p>Match your skills to relevant roles and titles.</p>
-          <a class="cta-btn" href="job-matcher.html">Explore Jobs</a>
+          <h3 data-i18n="findJobTitle">Find the right job</h3>
+          <p data-i18n="findJobDesc">Match your skills to relevant roles and titles.</p>
+          <a class="cta-btn" href="job-matcher.html" data-i18n="exploreJobs">Explore Jobs</a>
         </div>
         <div>
-          <h3>Build a resume</h3>
-          <p>Generate a clean, readable PDF in minutes.</p>
-          <a class="cta-btn" href="cv-builder.html">Resume Builder</a>
+          <h3 data-i18n="buildResumeTitle">Build a resume</h3>
+          <p data-i18n="buildResumeDesc">Generate a clean, readable PDF in minutes.</p>
+          <a class="cta-btn" href="cv-builder.html" data-i18n="resumeBuilder">Resume Builder</a>
         </div>
         <div>
-          <h3>Practice interviews</h3>
-          <p>Improve your answers with guided feedback.</p>
-          <a class="cta-btn" href="interview.html">Start Practicing</a>
+          <h3 data-i18n="practiceTitle">Practice interviews</h3>
+          <p data-i18n="practiceDesc">Improve your answers with guided feedback.</p>
+          <a class="cta-btn" href="interview.html" data-i18n="startPracticing">Start Practicing</a>
         </div>
         <div>
-          <h3>Discover your strengths</h3>
-          <p>Answer questions to uncover skills and roles.</p>
-          <a class="cta-btn" href="how-to-find-job.html">Find Your Fit</a>
+          <h3 data-i18n="discoverTitle">Discover your strengths</h3>
+          <p data-i18n="discoverDesc">Answer questions to uncover skills and roles.</p>
+          <a class="cta-btn" href="how-to-find-job.html" data-i18n="findYourFit">Find Your Fit</a>
         </div>
       </div>
     </section>

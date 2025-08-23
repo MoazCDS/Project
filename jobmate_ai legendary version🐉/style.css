@@ -182,7 +182,7 @@ textarea:focus {
   text-decoration: none;
   margin-top: 1rem;
   background: white;
-  color: blue;
+  color: black;
   border: none;
   padding: 0.5rem 1.7rem;
   border-radius: 5px;
@@ -395,7 +395,7 @@ a:visited {
 }
 
 .auth-grid a {
-    color: blue !important;
+    color: black !important;
 }
 
 .auth-grid a:hover {
@@ -410,4 +410,43 @@ a:visited {
 .dropbtn img {
     width: 40px;
     height: 20px;
+}
+
+/* Language Switcher Styles */
+.language-switcher {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.language-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 4px 10px;
+  margin: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.language-btn:hover {
+  background: var(--dropdown-hover);
+}
+
+.language-btn.active {
+  background: var(--nav-bg);
+  color: white;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .feature-section h1,
+[dir="rtl"] .feature-section h2,
+[dir="rtl"] .feature-section h3 {
+  margin-left: 0;
+  margin-right: -35px;
 }

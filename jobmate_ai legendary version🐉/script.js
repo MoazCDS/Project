@@ -62,7 +62,17 @@ function initAuthUI() {
   if (user) {
     if (authLinks) authLinks.style.display = 'none';
     if (userSection) userSection.style.display = 'flex';
-    if (userName) userName.textContent = `Hi, ${user.name || 'User'}`; userName.style.color = 'white';
+    if (userName) {
+      const translations = {
+        en: { greeting: "Hi" },
+        ar: { greeting: "مرحباً" }
+      };
+      const lang = localStorage.getItem('preferredLanguage') || (navigator.language.startsWith('ar') ? 'ar' : 'en');
+      const t = translations[lang] || translations['en'];
+      const greeting = t['greeting'] || '';
+      userName.textContent = `${greeting} ${user.name || 'User'}`;
+      userName.style.color = 'white';
+    }
 
     // Initialize theme after auth UI is set up
     initTheme();
@@ -457,7 +467,7 @@ function scoreRoles(text) {
   if (/\b(?:machine learning|ml|scikit|tensorflow|pytorch|model|predict)\b/.test(t)) add('Data Scientist (Junior)', 2);
 
   // Design
-  if (/\b(?:ui|ux|figma|photoshop|illustrator|wireframe|prototype|design)\b/.test(t)) add('UI/UX Designer', 2);
+  if (/\b(?:ui|ux|figma|photoshop|illustrator)\b/.test(t)) add('UI/UX Designer', 2);
 
   // Marketing
   if (/\b(?:seo|content|social|ads|marketing|campaign|copy)\b/.test(t)) add('Digital Marketer', 2);
@@ -566,3 +576,231 @@ document.addEventListener('DOMContentLoaded', () => {
   initInterview();
   initFitChat();
 });
+
+// ========= Language Switcher =========
+document.addEventListener('DOMContentLoaded', function() {
+  // Check for saved language preference or use browser language
+  const savedLang = localStorage.getItem('preferredLanguage') ||
+                   (navigator.language.startsWith('ar') ? 'ar' : 'en');
+  setLanguage(savedLang);
+
+  // Add event listeners to language buttons
+  document.querySelectorAll('.language-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      setLanguage(this.dataset.lang);
+    });
+  });
+});
+
+function setLanguage(lang) {
+  // Update the lang and dir attributes of the HTML element
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  // Save preference
+  localStorage.setItem('preferredLanguage', lang);
+
+  // Update active state of buttons
+  document.querySelectorAll('.language-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Update UI text
+  updateUIText(lang);
+}
+
+function updateUIText(lang) {
+  const translations = {
+    en: {
+      // App
+      appName: "JobMate AI",
+      greeting: "Hi",
+      // Navigation
+      home: "Home",
+      jobs: "Jobs",
+      courses: "Courses",
+      interview: "Interview",
+      findJob: "How to Find a Job",
+      resume: "Resume Builder",
+      signIn: "Sign In",
+      signUp: "Sign Up",
+      logOut: "Log Out",
+      darkMode: " Dark Mode",
+      // Home Page
+      welcome: "Welcome to JobMate AI",
+      welcomeSubtitle: "Find jobs, sharpen skills, practice interviews, and build a neat resume — all in one place.",
+      findJobTitle: "Find the right job",
+      findJobDesc: "Match your skills to relevant roles and titles.",
+      exploreJobs: "Explore Jobs",
+      buildResumeTitle: "Build a resume",
+      buildResumeDesc: "Generate a clean, readable PDF in minutes.",
+      resumeBuilder: "Resume Builder",
+      practiceTitle: "Practice interviews",
+      practiceDesc: "Improve your answers with guided feedback.",
+      startPracticing: "Start Practicing",
+      discoverTitle: "Discover your strengths",
+      discoverDesc: "Answer questions to uncover skills and roles.",
+      findYourFit: "Find Your Fit",
+      // Courses Page
+      coursesTitle: "Courses | JobMate AI",
+      courseFinder: "Course Finder",
+      whatToLearn: "What do you want to learn?",
+      coursePlaceholder: "e.g. Data Analysis, UI/UX, Python",
+      suggestCourses: "Suggest Courses",
+      // Job Matcher Page
+      jobsTitle: "Job Matcher | JobMate AI",
+      jobMatcher: "Job Matcher",
+      yourSkills: "Your skills or keywords:",
+      skillsPlaceholder: "e.g. JavaScript, React, Node.js, Excel",
+      findJobs: "Find Jobs",
+      // Interview Page
+      interviewTitle: "Interview Practice | JobMate AI",
+      interviewPractice: "Interview Practice",
+      answerPlaceholder: "Answer the question...",
+      send: "Send",
+      newQuestion: "New Question",
+      // How to Find a Job Page
+      findJobTitle: "Find Your Fit | JobMate AI",
+      discoverSkills: "Discover Your Skills",
+      typeYourAnswer: "Type your answer...",
+      restart: "Restart",
+      // CV Builder Page
+      resumeTitle: "Resume Builder | JobMate AI",
+      resumeBuilder: "Resume Builder",
+      fullName: "Full Name:",
+      fullNamePlaceholder: "Your full name",
+      contactInfo: "Contact Info:",
+      contactPlaceholder: "Email · Phone · Location",
+      professionalSummary: "Professional Summary:",
+      summaryPlaceholder: "2–3 lines highlighting your impact and focus",
+      skillsLabel: "Skills:",
+      skillsNote: "(comma separated)",
+      skillsPlaceholder: "e.g. Python, Excel, Communication",
+      experience: "Experience:",
+      experiencePlaceholder: "- Role @ Company (Dates): impact with numbers\n- Role @ Company (Dates): another impact point",
+      education: "Education:",
+      educationPlaceholder: "Degree — School (Year)\nKey coursework or honors",
+      generatePdf: "Generate PDF"
+    },
+    ar: {
+      // App
+      appName: "JobMate AI",
+      greeting: "مرحباً",
+      // Navigation
+      home: "الرئيسية",
+      jobs: "وظائف",
+      courses: "دورات",
+      interview: "مقابلة",
+      findJob: "كيف تجد وظيفة",
+      resume: "صانع السيرة الذاتية",
+      signIn: "تسجيل الدخول",
+      signUp: "إنشاء حساب",
+      logOut: "تسجيل الخروج",
+      darkMode: " الوضع المظلم",
+      // Home Page
+      welcome: "مرحباً بكم في JobMate AI",
+      welcomeSubtitle: "ابحث عن وظائف، طور مهاراتك، تدرب على المقابلات، وأنشئ سيرة ذاتية احترافية - كل ذلك في مكان واحد.",
+      findJobTitle: "ابحث عن الوظيفة المناسبة",
+      findJobDesc: "طابق مهاراتك مع الوظائف والعناوين المناسبة.",
+      exploreJobs: "استكشف الوظائف",
+      buildResumeTitle: "أنشئ سيرتك الذاتية",
+      buildResumeDesc: "أنشئ ملف PDF نظيفاً وقابلاً للقراءة في دقائق.",
+      resumeBuilder: "صانع السيرة الذاتية",
+      practiceTitle: "تدرب على المقابلات",
+      practiceDesc: "حسن إجاباتك مع توجيهات الخبراء.",
+      startPracticing: "ابدأ التدرب",
+      discoverTitle: "اكتشف نقاط قوتك",
+      discoverDesc: "أجب على الأسئلة لاكتشاف مهاراتك والوظائف المناسبة لك.",
+      findYourFit: "اكتشف ما يناسبك",
+      // Courses Page
+      coursesTitle: "دورات | JobMate AI",
+      courseFinder: "البحث عن الدورات",
+      whatToLearn: "ما الذي ترغب في تعلمه؟",
+      coursePlaceholder: "مثال: تحليل البيانات، واجهة المستخدم/تجربة المستخدم، بايثون",
+      suggestCourses: "اقترح دورات",
+      // Job Matcher Page
+      jobsTitle: "مطابقة الوظائف | JobMate AI",
+      jobMatcher: "مطابقة الوظائف",
+      yourSkills: "مهاراتك أو كلماتك المفتاحية:",
+      skillsPlaceholder: "مثال: JavaScript، React، Node.js، Excel",
+      findJobs: "البحث عن وظائف",
+      // Interview Page
+      interviewTitle: "تدرب على المقابلات | JobMate AI",
+      interviewPractice: "تدرب على المقابلات",
+      answerPlaceholder: "أجب على السؤال...",
+      send: "إرسال",
+      newQuestion: "سؤال جديد",
+      // How to Find a Job Page
+      findJobTitle: "اكتشف ما يناسبك | JobMate AI",
+      discoverSkills: "اكتشف مهاراتك",
+      typeYourAnswer: "اكتب إجابتك...",
+      restart: "إعادة التشغيل",
+      // CV Builder Page
+      resumeTitle: "صانع السيرة الذاتية | JobMate AI",
+      resumeBuilder: "صانع السيرة الذاتية",
+      fullName: "الاسم الكامل:",
+      fullNamePlaceholder: "الاسم الكامل",
+      contactInfo: "معلومات الاتصال:",
+      contactPlaceholder: "البريد الإلكتروني · الهاتف · الموقع",
+      professionalSummary: "ملخص احترافي:",
+      summaryPlaceholder: "2-3 أسطر تبرز إنجازاتك وتركيزك",
+      skillsLabel: "المهارات:",
+      skillsNote: "(مفصولة بفواصل)",
+      skillsPlaceholder: "مثال: Python، Excel، التواصل",
+      experience: "الخبرة:",
+      experiencePlaceholder: "- الوظيفة @ الشركة (التواريخ): أثرك بالأرقام\n- الوظيفة @ الشركة (التواريخ): إنجاز آخر",
+      education: "التعليم:",
+      educationPlaceholder: "الشهادة — المؤسسة التعليمية (السنة)\nالمقررات الدراسية أو الشهادات التقديرية",
+      generatePdf: "إنشاء ملف PDF"
+    }
+  };
+
+  // Get translations for current language
+  const t = translations[lang] || translations['en']; // Fallback to English
+
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.textContent = t[key];
+
+      // Update placeholder if it's an input/textarea
+      if (el.placeholder !== undefined) {
+        el.placeholder = t[key];
+      }
+    }
+  });
+
+  // Update placeholders with data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) {
+      el.placeholder = t[key];
+    }
+  });
+
+  // Update page title based on the current page
+  const currentPage = location.pathname.split('/').pop() || 'index.html';
+  if (currentPage === 'job-matcher.html') {
+    document.title = t['jobsTitle'] || 'Job Matcher | JobMate AI';
+  } else if (currentPage === 'courses.html') {
+    document.title = t['coursesTitle'] || 'Courses | JobMate AI';
+  } else if (currentPage === 'interview.html') {
+    document.title = t['interviewTitle'] || 'Interview Practice | JobMate AI';
+  } else if (currentPage === 'how-to-find-job.html') {
+    document.title = t['findJobTitle'] || 'Find Your Fit | JobMate AI';
+  } else if (currentPage === 'cv-builder.html') {
+    document.title = t['resumeTitle'] || 'Resume Builder | JobMate AI';
+  } else {
+    document.title = t['appName'] || 'JobMate AI';
+  }
+
+  // Update username with greeting if user is logged in
+  const userNameElement = document.getElementById('userName');
+  const currentUser = getCurrentUser();
+
+  if (userNameElement && currentUser) {
+    const greeting = t['greeting'] || '';
+    userNameElement.textContent = `${greeting} ${currentUser.name || 'User'}`;
+  }
+}

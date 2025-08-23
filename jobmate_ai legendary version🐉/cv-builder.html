@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resume Builder | JobMate AI</title>
+  <title data-i18n="resumeTitle">Resume Builder | JobMate AI</title>
   <link rel="stylesheet" href="style.css"/>
   <link rel="icon" type="image/png" sizes="32x50" href="../imgs/Logo.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -15,17 +15,17 @@
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-logo">JobMate AI</div>
+    <div class="nav-logo" data-i18n="appName">JobMate AI</div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="job-matcher.html">Jobs</a></li>
-      <li><a href="courses.html">Courses</a></li>
-      <li><a href="interview.html">Interview</a></li>
-      <li><a href="how-to-find-job.html">How to Find a Job</a></li>
-      <li><a href="cv-builder.html">Resume Builder</a></li>
+      <li><a href="index.html" data-i18n="home">Home</a></li>
+      <li><a href="job-matcher.html" data-i18n="jobs">Jobs</a></li>
+      <li><a href="courses.html" data-i18n="courses">Courses</a></li>
+      <li><a href="interview.html" data-i18n="interview">Interview</a></li>
+      <li><a href="how-to-find-job.html" data-i18n="findJob">How to Find a Job</a></li>
+      <li><a href="cv-builder.html" data-i18n="resume">Resume Builder</a></li>
       <li id="authLinks">
-        <a href="signin.html">Sign In</a> |
-        <a href="signup.html">Sign Up</a>
+        <a href="signin.html" data-i18n="signIn">Sign In</a> |
+        <a href="signup.html" data-i18n="signUp">Sign Up</a>
       </li>
       <li id="userSection" style="display:none;">
         <div class="dropdown">
@@ -35,10 +35,14 @@
             <div class="theme-toggle">
               <label>
                 <input type="checkbox" id="themeSwitch">
-                🌙 Dark Mode
+                <span data-i18n="darkMode">🌙 Dark Mode</span>
               </label>
             </div>
-            <a href="#" id="logoutBtn">Log Out</a>
+            <div class="language-switcher">
+              <button class="language-btn" data-lang="en">English</button>
+              <button class="language-btn" data-lang="ar">العربية</button>
+            </div>
+            <a href="#" id="logoutBtn" data-i18n="logOut">Log Out</a>
           </div>
         </div>
       </li>
@@ -47,23 +51,33 @@
 
   <div class="container" style="max-width:680px;">
     <section class="feature-section">
-      <h1><span class="feature-icon">📄</span> Resume Builder</h1>
+      <h1><span class="feature-icon">📄</span> <span style="color:white" data-i18n="resumeBuilder">Resume Builder</span></h1>
       <form id="cvForm" autocomplete="off">
-        <label for="cvName">Full Name:</label>
-        <input type="text" id="cvName" name="cvName" required placeholder="Your full name"/>
-        <label for="cvContact">Contact Info:</label>
-        <input type="text" id="cvContact" name="cvContact" required placeholder="Email · Phone · Location"/>
-        <label for="cvSummary">Professional Summary:</label>
-        <textarea id="cvSummary" name="cvSummary" rows="3" placeholder="2–3 lines highlighting your impact and focus"></textarea>
-        <label for="cvSkills">Skills: <span style="font-weight:400;font-size:0.95em; color:white;">(comma separated)</span></label>
-        <input type="text" id="cvSkills" name="cvSkills" required placeholder="e.g. Python, Excel, Communication"/>
-        <label for="cvExperience">Experience:</label>
-        <textarea id="cvExperience" name="cvExperience" rows="5" required placeholder="- Role @ Company (Dates): impact with numbers
+        <label for="cvName" data-i18n="fullName">Full Name:</label>
+        <input type="text" id="cvName" name="cvName" required data-i18n-placeholder="fullNamePlaceholder" placeholder="Your full name"/>
+
+        <label for="cvContact" data-i18n="contactInfo">Contact Info:</label>
+        <input type="text" id="cvContact" name="cvContact" required data-i18n-placeholder="contactPlaceholder" placeholder="Email · Phone · Location"/>
+
+        <label for="cvSummary" data-i18n="professionalSummary">Professional Summary:</label>
+        <textarea id="cvSummary" name="cvSummary" rows="3" data-i18n-placeholder="summaryPlaceholder" placeholder="2–3 lines highlighting your impact and focus"></textarea>
+
+        <label for="cvSkills" data-i18n="skillsLabel">Skills: <span style="font-weight:400;font-size:0.95em; color:white;" data-i18n="skillsNote">(comma separated)</span></label>
+        <input type="text" id="cvSkills" name="cvSkills" required data-i18n-placeholder="skillsPlaceholder" placeholder="e.g. Python, Excel, Communication"/>
+
+        <label for="cvExperience" data-i18n="experience">Experience:</label>
+        <textarea id="cvExperience" name="cvExperience" rows="5" required
+          data-i18n-placeholder="experiencePlaceholder"
+          placeholder="- Role @ Company (Dates): impact with numbers
 - Role @ Company (Dates): another impact point"></textarea>
-        <label for="cvEducation">Education:</label>
-        <textarea id="cvEducation" name="cvEducation" rows="3" required placeholder="Degree — School (Year)
+
+        <label for="cvEducation" data-i18n="education">Education:</label>
+        <textarea id="cvEducation" name="cvEducation" rows="3" required
+          data-i18n-placeholder="educationPlaceholder"
+          placeholder="Degree — School (Year)
 Key coursework or honors"></textarea>
-        <button type="submit" class="cta-btn">Generate PDF</button>
+
+        <button type="submit" class="cta-btn" data-i18n="generatePdf">Generate PDF</button>
       </form>
       <div id="cvResult" class="results" style="display: None;" aria-live="polite"></div>
     </section>
