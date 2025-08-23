@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resume Builder | JobMate AI</title>
   <link rel="stylesheet" href="style.css"/>
-  <!-- Primary jsPDF CDN -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../imgs/Logo.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- Optional fallback CDN (kept after primary; harmless if both load) -->
   <script>
     // Lightweight readiness check
     window.__pdfReady = () => (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
@@ -29,8 +28,19 @@
         <a href="signup.html">Sign Up</a>
       </li>
       <li id="userSection" style="display:none;">
-        <span id="userName"></span>
-        <a href="#" id="logoutBtn">Log Out</a>
+        <div class="dropdown">
+          <span id="userName"></span>
+          <button class="dropbtn">⚙️</button>
+          <div class="dropdown-content">
+            <div class="theme-toggle">
+              <label>
+                <input type="checkbox" id="themeSwitch">
+                🌙 Dark Mode
+              </label>
+            </div>
+            <a href="#" id="logoutBtn">Log Out</a>
+          </div>
+        </div>
       </li>
     </ul>
   </nav>
@@ -45,7 +55,7 @@
         <input type="text" id="cvContact" name="cvContact" required placeholder="Email · Phone · Location"/>
         <label for="cvSummary">Professional Summary:</label>
         <textarea id="cvSummary" name="cvSummary" rows="3" placeholder="2–3 lines highlighting your impact and focus"></textarea>
-        <label for="cvSkills">Skills: <span style="font-weight:400;font-size:0.95em;">(comma separated)</span></label>
+        <label for="cvSkills">Skills: <span style="font-weight:400;font-size:0.95em; color:white;">(comma separated)</span></label>
         <input type="text" id="cvSkills" name="cvSkills" required placeholder="e.g. Python, Excel, Communication"/>
         <label for="cvExperience">Experience:</label>
         <textarea id="cvExperience" name="cvExperience" rows="5" required placeholder="- Role @ Company (Dates): impact with numbers

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Job Matcher | JobMate AI</title>
   <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="../imgs/Logo.png">
   <script defer src="script.js"></script>
 </head>
 <body>
@@ -22,8 +23,19 @@
         <a href="signup.html">Sign Up</a>
       </li>
       <li id="userSection" style="display:none;">
-        <span id="userName"></span>
-        <a href="#" id="logoutBtn">Log Out</a>
+        <div class="dropdown">
+          <span id="userName"></span>
+          <button class="dropbtn">⚙️</button>
+          <div class="dropdown-content">
+            <div class="theme-toggle">
+              <label>
+                <input type="checkbox" id="themeSwitch">
+                🌙 Dark Mode
+              </label>
+            </div>
+            <a href="#" id="logoutBtn">Log Out</a>
+          </div>
+        </div>
       </li>
     </ul>
   </nav>

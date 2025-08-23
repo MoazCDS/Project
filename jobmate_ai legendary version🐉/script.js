@@ -3,6 +3,7 @@
 // ========= Local Storage Utilities =========
 const LS_USERS_KEY = 'jm_users';
 const LS_CURRENT_USER_KEY = 'jm_current_user';
+const THEME_KEY = 'jm_theme';
 
 function getUsers() {
   try { return JSON.parse(localStorage.getItem(LS_USERS_KEY)) || []; }
@@ -12,6 +13,25 @@ function saveUsers(users) { localStorage.setItem(LS_USERS_KEY, JSON.stringify(us
 function setCurrentUser(user) { localStorage.setItem(LS_CURRENT_USER_KEY, JSON.stringify(user)); }
 function getCurrentUser() { try { return JSON.parse(localStorage.getItem(LS_CURRENT_USER_KEY)); } catch { return null; } }
 function clearCurrentUser() { localStorage.removeItem(LS_CURRENT_USER_KEY); }
+
+// ========= Theme Management =========
+function initTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  const themeSwitch = document.getElementById('themeSwitch');
+  if (themeSwitch) {
+    themeSwitch.checked = savedTheme === 'dark';
+    themeSwitch.addEventListener('change', toggleTheme);
+  }
+}
+
+function toggleTheme(e) {
+  const isDark = e.target.checked;
+  const theme = isDark ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem(THEME_KEY, theme);
+}
 
 // ========= Auth Guard & Navbar State =========
 function enforceAuth() {
@@ -38,38 +58,26 @@ function initAuthUI() {
   const logoutBtn = document.getElementById('logoutBtn');
   const user = getCurrentUser();
 
-  const links = document.querySelectorAll('.nav-links a[href]');
-  if (!user) {
-    links.forEach(a => {
-      const href = a.getAttribute('href');
-      const isAuth = href === 'signin.html' || href === 'signup.html';
-      if (!isAuth) {
-        a.classList.add('disabled-link');
-        a.addEventListener('click', (e) => e.preventDefault());
-        a.setAttribute('tabindex', '-1');
-        a.setAttribute('aria-disabled', 'true');
-      }
-    });
-    if (authLinks) authLinks.style.display = '';
-    if (userSection) userSection.style.display = 'none';
-  } else {
-    links.forEach(a => {
-      a.classList.remove('disabled-link');
-      a.removeAttribute('aria-disabled');
-      a.removeAttribute('tabindex');
-    });
+  // Update UI based on auth state
+  if (user) {
     if (authLinks) authLinks.style.display = 'none';
-    if (userSection && userName) {
-      userSection.style.display = 'flex';
-      userName.textContent = `Hi, ${user.name || 'User'}`;
-    }
+    if (userSection) userSection.style.display = 'flex';
+    if (userName) userName.textContent = `Hi, ${user.name || 'User'}`; userName.style.color = 'white';
+
+    // Initialize theme after auth UI is set up
+    initTheme();
+
+    // Add logout handler
     if (logoutBtn) {
-      logoutBtn.onclick = (e) => {
+      logoutBtn.addEventListener('click', (e) => {
         e.preventDefault();
         clearCurrentUser();
         window.location.href = 'signin.html';
-      };
+      });
     }
+  } else {
+    if (authLinks) authLinks.style.display = 'block';
+    if (userSection) userSection.style.display = 'none';
   }
 }
 
@@ -298,6 +306,7 @@ function initCVBuilder() {
       if (result) {
           result.textContent = 'PDF generated. Check your downloads.'
           result.style.display = 'block';
+          result.style.color = 'black';
       }
     } catch (err) {
       if (result) result.textContent = 'Unexpected error while generating PDF. Try again.';
@@ -362,7 +371,7 @@ function initCourses() {
       return `<li><a href="${href}" target="_blank" rel="noopener">${p.name} — ${topic}</a></li>`;
     }).join('');
 
-    results.innerHTML = `<p><strong>Open a platform for:</strong> ${topic}</p><ul>${items}</ul>`;
+    results.innerHTML = `<ul>${items}</ul>`;
   });
 }
 
