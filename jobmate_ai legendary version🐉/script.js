@@ -735,23 +735,6 @@ function updateUIText(lang) {
       discoverSkills: "اكتشف مهاراتك",
       typeYourAnswer: "اكتب إجابتك...",
       restart: "إعادة التشغيل",
-      // CV Builder Page
-      resumeTitle: "صانع السيرة الذاتية | JobMate AI",
-      resumeBuilder: "صانع السيرة الذاتية",
-      fullName: "الاسم الكامل:",
-      fullNamePlaceholder: "الاسم الكامل",
-      contactInfo: "معلومات الاتصال:",
-      contactPlaceholder: "البريد الإلكتروني · الهاتف · الموقع",
-      professionalSummary: "ملخص احترافي:",
-      summaryPlaceholder: "2-3 أسطر تبرز إنجازاتك وتركيزك",
-      skillsLabel: "المهارات:",
-      skillsNote: "(مفصولة بفواصل)",
-      skillsPlaceholder: "مثال: Python، Excel، التواصل",
-      experience: "الخبرة:",
-      experiencePlaceholder: "- الوظيفة @ الشركة (التواريخ): أثرك بالأرقام\n- الوظيفة @ الشركة (التواريخ): إنجاز آخر",
-      education: "التعليم:",
-      educationPlaceholder: "الشهادة — المؤسسة التعليمية (السنة)\nالمقررات الدراسية أو الشهادات التقديرية",
-      generatePdf: "إنشاء ملف PDF"
     }
   };
 
